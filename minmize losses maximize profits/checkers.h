@@ -12,7 +12,7 @@ class checkers_board;
 
 enum class Board_Letter_Checkers
 {
-    A = 1,
+    A,
     B,
     C,
     D,
