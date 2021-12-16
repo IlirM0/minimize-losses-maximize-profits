@@ -8,14 +8,27 @@
 #include <iostream>
 
 class checkers_piece;
-class checkers_box;
+class checkers_board;
 
-class checkers_box
+enum class Board_Letter_Checkers
+{
+    A = 1,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H
+};
+
+class checkers_board
 {
 private:
     int row;
     int column;
     checkers_piece * piece;
+    checkers_piece * board_arr;
 };
 
 class checkers_piece
@@ -26,5 +39,9 @@ private:
 public:
     checkers_piece();
 };
+
+
+
+
 
 #endif //MINMIZE_LOSSES_MAXIMIZE_PROFITS_CHECKERS_H
