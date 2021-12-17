@@ -24,8 +24,9 @@ enum class TTT_Check
     Circle
 };
 
-int one_to_zero_based(int num);
-int zero_to_one_based(int num);
+int one_to_zero_based(const int &num);
+int zero_to_one_based(const int &num);
+Board_Letter_TTT char_to_ttt_letter(const char &c);
 
 class ttt_board
 {
@@ -33,6 +34,8 @@ private:
     ttt_square * m_board_arr;
 public:
     ttt_board();
+    ttt_square &get_square(const int y_coor, const Board_Letter_TTT x_coor);
+    void place_tiktaktoe_check(const TTT_Check &team);
 };
 
 class ttt_piece
@@ -52,8 +55,13 @@ private:
     ttt_piece * m_current_piece;
 public:
     ttt_square(Board_Letter_TTT x_coor, int y_coor);
-    ttt_square();
+    ttt_square() = default; // empty constructor
     void set_current_piece(ttt_piece * current_piece);
+    void set_y_coor(const int &y_coor);
+    void set_x_coor(const Board_Letter_TTT &x_coor);
+    void set_coords(const int &y_coor, const Board_Letter_TTT &x_coor);
+    int get_y_coor() const;
+    Board_Letter_TTT get_x_coor() const;
 };
 
 
