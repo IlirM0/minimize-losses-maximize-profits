@@ -4,7 +4,7 @@
 
 #include "tiktaktoe.h"
 
-ttt_board::ttt_board() : m_board_arr{new ttt_square[9]}
+ttt_board::ttt_board(const TTT_Check &player_team) : m_board_arr{new ttt_square[9]}, m_squares_left{9}, m_player_team{player_team}
 {
     for (int i = 0; i < 9; ++i)
     {
@@ -17,7 +17,8 @@ ttt_board::ttt_board() : m_board_arr{new ttt_square[9]}
 ttt_piece::ttt_piece(TTT_Check team,ttt_square * start_square) : m_team{team}, m_current_square{start_square}
 {}
 
-ttt_square::ttt_square(Board_Letter_TTT x_coor, int y_coor) : m_y_coor{y_coor}, m_x_coor{x_coor}
+ttt_square::ttt_square(Board_Letter_TTT x_coor, int y_coor) : m_y_coor{y_coor}, m_x_coor{x_coor}, m_current_piece{
+        nullptr}
 {}
 
 void ttt_square::set_current_piece(ttt_piece * current_piece)
@@ -107,7 +108,36 @@ Board_Letter_TTT ttt_square::get_x_coor() const
     return m_x_coor;
 }
 
-ttt_square &ttt_board::get_square(const int y_coor, const Board_Letter_TTT x_coor)
+ttt_square &ttt_board::get_square(const int &y_coor, const Board_Letter_TTT &x_coor) const
 {
     return m_board_arr[y_coor*3 + int(x_coor)];
+}
+
+ttt_square::ttt_square(): m_current_piece{nullptr}
+{}
+
+void ttt_board::place_tiktaktoe_check(const TTT_Check &team, int y_coor, Board_Letter_TTT x_coor)
+{
+    // create a dynmic tiktaktoe piece.
+    ttt_piece *temp_piece = new ttt_piece{team, &get_square(y_coor,x_coor)};
+    // add it to the member pieces
+    m_pieces.push_back(temp_piece);
+    // give the square the information that this piece is on its square. yabba dabba doo!
+    get_square(y_coor,x_coor).set_current_piece( temp_piece );
+
+}
+
+int ttt_board::get_square_left() const
+{
+    return m_squares_left;
+}
+
+ttt_square *ttt_piece::get_current_square() const
+{
+    return m_current_square;
+}
+
+TTT_Check ttt_piece::get_team() const
+{
+    return m_team;
 }
