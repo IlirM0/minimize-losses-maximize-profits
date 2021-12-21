@@ -9,4 +9,8 @@
 
 void main_menu_loop();
 
+void game_loop();
+
+int userIntChoise();
+
 #endif //MINMIZE_LOSSES_MAXIMIZE_PROFITS_MENU_H
