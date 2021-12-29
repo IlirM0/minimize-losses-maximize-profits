@@ -4,7 +4,7 @@
 
 #include "tiktaktoe.h"
 
-ttt_board::ttt_board(const TTT_Check &player_team) : m_board_arr{new ttt_square[9]}, m_squares_left{9}, m_player_team{player_team}
+ttt_board::ttt_board(const TTT_Check &player_team) : m_board_arr{new ttt_square[9]}, m_squares_left{9}, m_player_team{player_team}, m_is_game_done{false}
 {
     for (int i = 0; i < 9; ++i)
     {
@@ -118,16 +118,21 @@ ttt_square::ttt_square(): m_current_piece{nullptr}
 
 void ttt_board::place_tiktaktoe_check(const TTT_Check &team, int y_coor, Board_Letter_TTT x_coor)
 {
-    // create a dynmic tiktaktoe piece.
-    ttt_piece *temp_piece = new ttt_piece{team, &get_square(y_coor,x_coor)};
-    // add it to the member pieces
-    m_pieces.push_back(temp_piece);
-    // give the square the information that this piece is on its square. yabba dabba doo!
-    get_square(y_coor,x_coor).set_current_piece( temp_piece );
+    if (get_square(y_coor,x_coor).get_current_piece() == nullptr) // if the square has nothing on it yet.
+    {
+        // create a dynmic tiktaktoe piece.
+        ttt_piece *temp_piece = new ttt_piece{team, &get_square(y_coor,x_coor)};
+        // add it to the member pieces
+        m_pieces.push_back(temp_piece);
+        // give the square the information that this piece is on its square. yabba dabba doo!
+        get_square(y_coor,x_coor).set_current_piece( temp_piece );
+    }
+
+    // check if game has ended after this move.
 
 }
 
-int ttt_board::get_square_left() const
+int ttt_board::get_squares_left() const
 {
     return m_squares_left;
 }
@@ -140,4 +145,18 @@ ttt_square *ttt_piece::get_current_square() const
 TTT_Check ttt_piece::get_team() const
 {
     return m_team;
+}
+
+ttt_piece *ttt_square::get_current_piece() const
+{
+    return m_current_piece;
+}
+
+bool ttt_board::has_game_ended() const
+{
+    // check all the possible ways a game could end, for both cross and circle.
+
+    // print that someone has won.
+
+    // put m_is_game_done to true.
 }

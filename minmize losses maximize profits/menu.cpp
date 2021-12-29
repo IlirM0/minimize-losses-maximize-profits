@@ -84,6 +84,7 @@ void gameLoop(){
     std::cout << "Going back to the main menu...\n\n";
 }
 
+// voor de game loop moet er nog in komen dat elke loop in de while ook word gekeken of m_is_game_done true is.
 
 //void game_loop()
 //{

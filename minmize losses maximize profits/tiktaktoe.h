@@ -36,11 +36,13 @@ private:
     ttt_square * m_board_arr;
     std::vector<ttt_piece*> m_pieces;
     int m_squares_left;
+    bool m_is_game_done;
 public:
     ttt_board(const TTT_Check &player_team);
     ttt_square &get_square(const int &y_coor, const Board_Letter_TTT &x_coor) const;
     void place_tiktaktoe_check(const TTT_Check &team, int y_coor, Board_Letter_TTT x_coor);
-    int get_square_left() const;
+    int get_squares_left() const;
+    bool has_game_ended() const;
 };
 
 class ttt_piece
@@ -69,6 +71,7 @@ public:
     void set_coords(const int &y_coor, const Board_Letter_TTT &x_coor);
     int get_y_coor() const;
     Board_Letter_TTT get_x_coor() const;
+    ttt_piece * get_current_piece() const;
 };
 
 
