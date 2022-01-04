@@ -33,6 +33,7 @@ class ttt_board
 {
 private:
     TTT_Check m_player_team;
+    TTT_Check m_winner;
     ttt_square * m_board_arr;
     std::vector<ttt_piece*> m_pieces;
     int m_squares_left;
@@ -42,7 +43,9 @@ public:
     ttt_square &get_square(const int &y_coor, const Board_Letter_TTT &x_coor) const;
     void place_tiktaktoe_check(const TTT_Check &team, int y_coor, Board_Letter_TTT x_coor);
     int get_squares_left() const;
-    bool has_game_ended() const;
+    bool get_is_game_done();
+    void check_game_end_routine();
+    //void set_winner(TTT_Check winner);
 };
 
 class ttt_piece

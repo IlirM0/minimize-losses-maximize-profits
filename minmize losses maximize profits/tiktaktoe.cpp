@@ -126,9 +126,11 @@ void ttt_board::place_tiktaktoe_check(const TTT_Check &team, int y_coor, Board_L
         m_pieces.push_back(temp_piece);
         // give the square the information that this piece is on its square. yabba dabba doo!
         get_square(y_coor,x_coor).set_current_piece( temp_piece );
+        m_squares_left--;
     }
 
     // check if game has ended after this move.
+    this->check_game_end_routine();
 
 }
 
@@ -152,11 +154,82 @@ ttt_piece *ttt_square::get_current_piece() const
     return m_current_piece;
 }
 
-bool ttt_board::has_game_ended() const
+bool ttt_board::get_is_game_done()
+{
+
+    return m_is_game_done;
+}
+
+void ttt_board::check_game_end_routine()
 {
     // check all the possible ways a game could end, for both cross and circle.
 
-    // print that someone has won.
+    // check diagonals
+    if((this->get_square(0, Board_Letter_TTT::A).get_current_piece()->get_team() == this->get_square(1, Board_Letter_TTT::B).get_current_piece()->get_team()
+        && this->get_square(1, Board_Letter_TTT::B).get_current_piece()->get_team() == this->get_square(2, Board_Letter_TTT::C).get_current_piece()->get_team())
+        || (this->get_square(0, Board_Letter_TTT::C).get_current_piece()->get_team() == this->get_square(1, Board_Letter_TTT::B).get_current_piece()->get_team()
+           && this->get_square(1, Board_Letter_TTT::B).get_current_piece()->get_team() == this->get_square(2, Board_Letter_TTT::A).get_current_piece()->get_team()))
+    {
+        if (this->get_square(0, Board_Letter_TTT::A).get_current_piece()->get_team() == TTT_Check::Circle)
+        {
+            std::cout << "Circle (O) has won the game!\n";
+        }
+        else
+        {
+            std::cout << "Cross (X) has won the game!\n";
+        }
 
-    // put m_is_game_done to true.
+        m_winner = this->get_square(0, Board_Letter_TTT::A).get_current_piece()->get_team();
+
+        m_is_game_done = true;
+    }
+    //check vertical
+    for (int i = 0; i < 3; ++i) {
+        if (this->get_square(i, Board_Letter_TTT::A).get_current_piece()->get_team() == this->get_square(i, Board_Letter_TTT::B).get_current_piece()->get_team() && this->get_square(i, Board_Letter_TTT::B).get_current_piece()->get_team() == this->get_square(i, Board_Letter_TTT::C).get_current_piece()->get_team())
+        {
+            if (this->get_square(i, Board_Letter_TTT::A).get_current_piece()->get_team() == TTT_Check::Circle)
+            {
+                std::cout << "Circle (O) has won the game!\n";
+            }
+            else
+            {
+                std::cout << "Cross (X) has won the game!\n";
+            }
+
+            m_winner = this->get_square(i, Board_Letter_TTT::A).get_current_piece()->get_team();
+
+            m_is_game_done = true;
+        }
+    }
+
+    for (int i = 0; i < 3; ++i) {
+        if (this->get_square(0, static_cast<Board_Letter_TTT>(i)).get_current_piece()->get_team() == this->get_square(1, static_cast<Board_Letter_TTT>(i)).get_current_piece()->get_team() && this->get_square(1, static_cast<Board_Letter_TTT>(i)).get_current_piece()->get_team() == this->get_square(2, static_cast<Board_Letter_TTT>(i)).get_current_piece()->get_team())
+        {
+            if (this->get_square(0, static_cast<Board_Letter_TTT>(i)).get_current_piece()->get_team() == TTT_Check::Circle)
+            {
+                std::cout << "Circle (O) has won the game!\n";
+            }
+            else
+            {
+                std::cout << "Cross (X) has won the game!\n";
+            }
+
+            m_winner = this->get_square(0, static_cast<Board_Letter_TTT>(i)).get_current_piece()->get_team();
+
+            m_is_game_done = true;
+        }
+    }
+
+    // now check for lines if someone has won. If they have won, then do the same as above.
+    if (m_squares_left == 0 && !(m_is_game_done))
+    {
+        m_is_game_done = true;
+        std::cout << "Game ends in a draw!\n";
+    }
+
 }
+
+//void ttt_board::set_winner(TTT_Check winner)
+//{
+//    m_winner = winner;
+//}
