@@ -1,3 +1,0 @@
-/mnt/c/Users/jesse/OneDrive/School/bestanden/Jaar 2/Advanced Programming/Nieuwe map/minmize losses maximize profits/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/jesse/OneDrive/School/bestanden/Jaar 2/Advanced Programming/Nieuwe map/minmize losses maximize profits/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/jesse/OneDrive/School/bestanden/Jaar 2/Advanced Programming/Nieuwe map/minmize losses maximize profits/cmake-build-debug/CMakeFiles/minmize_losses_maximize_profits.dir

@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/minmize_losses_maximize_profits.dir/main.cpp.o CMakeFiles/minmize_losses_maximize_profits.dir/checkers.cpp.o CMakeFiles/minmize_losses_maximize_profits.dir/tiktaktoe.cpp.o CMakeFiles/minmize_losses_maximize_profits.dir/menu.cpp.o -o minmize_losses_maximize_profits 
