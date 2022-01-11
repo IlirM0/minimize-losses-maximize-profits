@@ -308,7 +308,6 @@ def makeMoveOnBoard(infoList,playboard):
     checkMakeKing(playboard)
 
 def playerMove():
-    checkMakeKing(board)
     player_move = playerinput.getCoordinate(player, board, getPlayableMoves(player, board))
     move_destination = playerinput.getDestination(player_move,getPlayableMoves(player,board))
     full_move_list = playerinput.returnFullMoveList(player_move,move_destination,getPlayableMoves(player,board))
