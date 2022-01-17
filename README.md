@@ -13,6 +13,8 @@
 </style>
 
 # Minimizing loses maximizing profits
+By: Jesse Masselink, Ilir Morina
+
 ### 1. Introduction
 
 When playing a game like tik-tak-toe, checkers, chess, or any turn based game against a bot it will have to decide which move to make. Now a days these moves are calculated via AI and letting the bot play against itself a lot, but before AI there was an alogrithm that was often used called the minimax algorithm, that is the algorithm that we are going to be looking at in this assigment.
