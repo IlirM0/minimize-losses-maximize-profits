@@ -13,7 +13,7 @@
 </style>
 
 # Minimizing loses maximizing profits
-By: Jesse Masselink, Ilir Morina
+By: Jesse Masselink and Ilir Morina
 
 ### 1. Introduction
 
